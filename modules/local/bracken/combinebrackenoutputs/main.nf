@@ -1,4 +1,5 @@
 process BRACKEN_COMBINEBRACKENOUTPUTS {
+    tag "$filtered"
     label 'process_low'
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?

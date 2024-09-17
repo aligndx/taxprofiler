@@ -44,6 +44,7 @@ include { UNPACK_DATABASE } from '../modules/local/unpack_database'
 include { BRACKEN_FILTER } from '../modules/local/bracken/filter/main'
 include { BRACKEN_COMBINEBRACKENOUTPUTS } from '../modules/local/bracken/combinebrackenoutputs/main'
 include { BRACKEN_PLOT } from '../modules/local/bracken/plot/main'
+include { BRACKEN_TRANSFORM } from '../modules/local/bracken/transform'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -187,6 +188,12 @@ workflow METASENSE {
     )
 
     ch_versions = ch_versions.mix(BRACKEN_COMBINEBRACKENOUTPUTS.out.versions)
+
+    BRACKEN_TRANSFORM(
+        BRACKEN_COMBINEBRACKENOUTPUTS.out.filtered
+    )
+    ch_versions = ch_versions.mix(BRACKEN_TRANSFORM.out.versions)
+
 
     //
     // Module: Plot bracken data 
