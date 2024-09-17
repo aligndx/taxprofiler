@@ -44,7 +44,6 @@ include { UNPACK_DATABASE } from '../modules/local/unpack_database'
 include { BRACKEN_FILTER } from '../modules/local/bracken/filter/main'
 include { BRACKEN_COMBINEBRACKENOUTPUTS } from '../modules/local/bracken/combinebrackenoutputs/main'
 include { BRACKEN_PLOT } from '../modules/local/bracken/plot/main'
-include { TAXPASTA_MERGE } from '../modules/local/taxpasta/merge/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
