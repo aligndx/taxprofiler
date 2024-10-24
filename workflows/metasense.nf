@@ -45,6 +45,7 @@ include { BRACKEN_FILTER } from '../modules/local/bracken/filter/main'
 include { BRACKEN_COMBINEBRACKENOUTPUTS } from '../modules/local/bracken/combinebrackenoutputs/main'
 include { BRACKEN_PLOT } from '../modules/local/bracken/plot/main'
 include { BRACKEN_TRANSFORM } from '../modules/local/bracken/transform'
+include { KRAKEN2_STATISTICS } from '../modules/local/kraken_statistics'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -150,6 +151,12 @@ workflow METASENSE {
         save_reads_assignment
     )
     ch_versions = ch_versions.mix(KRAKEN2_KRAKEN2.out.versions.first())
+
+    KRAKEN2_STATISTICS (
+        KRAKEN2_KRAKEN2.out.report.collect{it[1]},
+    )
+    ch_versions = ch_versions.mix(KRAKEN2_STATISTICS.out.versions.first())
+
 
     //
     // MODULE: Run Bracken
